@@ -9,7 +9,6 @@ Cabinet::Cabinet() : Furniture() {
     x = 0;
     y = 0;
     z = 0;
-    state = "off";
     material = "none";
 }
 
@@ -21,9 +20,9 @@ Cabinet::Cabinet(std::string mat, double w, double d, double h, double xPos, dou
     x = xPos;
     y = yPos;
     z = zPos;
-    state = "off";
     material = mat;
 }
+
 
 Cabinet::Cabinet(const Cabinet& other) 
     : Furniture() {
@@ -33,6 +32,18 @@ Cabinet::Cabinet(const Cabinet& other)
     x = other.x;
     y = other.y;
     z = other.z;
-    state = other.state;
     material = other.material;
+}
+
+
+bool Cabinet::distanceByMaterial(const Cabinet& other) const {
+    if (material != other.getMaterial()) {
+        double dist = std::sqrt(std::pow(x - other.getX(), 2) + std::pow(y - other.getY(), 2));
+        return dist >= 2;
+    }
+    return true;
+}
+
+std::string Cabinet::identify() const {
+    return "Cabinet";
 }

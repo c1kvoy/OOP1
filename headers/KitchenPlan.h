@@ -13,6 +13,7 @@ public:
     KitchenPlan();
     KitchenPlan(std::vector<Furniture*> vecfur, double width_, double depth_);
     KitchenPlan(const KitchenPlan& other);
+
     bool isNormal() const;
 };
 

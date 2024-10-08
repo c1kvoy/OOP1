@@ -5,6 +5,8 @@
 #include "../headers/Furniture.h"
 #include "../headers/Cabinet.h"
 #include "../headers/KitchenPlan.h"
+#include "../headers/Techs.h"
+
 
 int main() {
     Cabinet defaultCab;
@@ -24,16 +26,18 @@ int main() {
     Cabinet cab4("metal", 100, 50, 200, 1, 0, 0);
     assert(cab1.distanceByMaterial(cab4) == false);
 
-    assert(cab1.getState() == "off");
-    cab1.furnitureSwitch();
-    assert(cab1.getState() == "on");
-    assert(cab1.isLevitate() == false);
+    Techs t1("name1", 100, 50, 200, 0, 0, 0);
+    assert(t1.getState() == "off");
+    t1.Switch();
+    assert(t1.getState() == "on");
+    assert(t1.isLevitate() == false);
 
     std::vector<Furniture*> furniVec;
     furniVec.push_back(&cab1);
-    furniVec.push_back(&cab2);
-    furniVec.push_back(&cab3);
-    
+    furniVec.push_back(&t1);
+    // furniVec.push_back(&cab2);
+    // furniVec.push_back(&cab3);
+
     KitchenPlan pl1(furniVec, 2, 3);
     assert(pl1.isNormal()==false); 
 
