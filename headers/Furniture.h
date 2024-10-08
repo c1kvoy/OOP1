@@ -1,16 +1,18 @@
 #ifndef FURNITURE_H
 #define FURNITURE_H
 
+#include <vector>
 #include <string>
 
 class Furniture {
 protected:
     double x, y, z;
     double width, depth, height;
-    std::string state;
+    std::string state, material;
 
 public:
-    virtual bool isIntersection(const Furniture& other) const = 0;
+    virtual bool isIntersection(const Furniture& other) const ;
+    virtual bool distanceByMaterial(const Furniture& other) const ;
     virtual void furnitureSwitch();
     virtual bool isLevitate();
     
@@ -24,22 +26,7 @@ public:
     double getWidth() const { return width; }
     double getDepth() const { return depth; }
     double getHeight() const { return height; }
-};
-
-class Cabinet : public Furniture {
-private:
-    std::string material;
-
-public:
-    Cabinet();
-    Cabinet(std::string mat, double w, double d, double h, double xPos, double yPos, double zPos);
-    Cabinet(const Cabinet& other);
-
-    bool isIntersection(const Furniture& other) const override;
-    bool distanceByMaterial(const Cabinet& other) const;
-
-
-    virtual ~Cabinet() {};
+    std::string getMaterial() const { return material; }
 };
 
 #endif
